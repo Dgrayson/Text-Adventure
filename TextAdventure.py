@@ -1,108 +1,31 @@
 __author__ = 'dgrayson'
 
 import random
+import Player
+import Enemy
 from time import sleep
-
-class Player:
-
-    def __init__(self, name):
-        self.hp = 100
-        self.x = 0
-        self.y = 0
-        self.name = name
-        self.alive = True
-        self.defend = False
-
-    def turn(self):
-
-        self.defend = False
-
-        print("What will you do?\n\n1. Attack 2. Defend\n3. Heal 4. Run")
-        choice = int(input())
-
-        if choice == 1:
-            print("You attack"); sleep(1.5)
-
-            critical = random.randint(0,100)
-
-            if critical % 9 == 0:
-                print("Critical Hit!"); sleep(1.5)
-                enemy.hp -= 20
-                print("You dealt 20 damage!\n"); sleep(1.5)
-            else:
-                enemy.hp -= 5
-                print("You deal 5 damage\n");sleep(1.5)
-
-            if enemy.hp <= 0:
-                print("You have defeated the enemy\n\n")
-                print("**********\n\n");sleep(1.5)
-                enemy.alive = False
-        elif choice == 2:
-            print("You defend"); sleep(1)
-
-            self.defend = True
-        elif choice == 3:
-            print("You Heal 10 HP")
-
-            self.hp += 10
-        elif choice == 4:
-            print("You've run away")
-
-            return -1
-
-    def move(self, direction):
-
-        moved = False
-
-        while moved == False:
-            if direction == 'w' and self.x != 0:
-                self.x -= 1
-                moved = True
-            elif direction == 'e' and self.x != 4:
-                self.x += 1
-                moved = True
-            elif direction == 'n' and self.y != 4:
-                self.y += 1
-                moved = True
-            elif direction == 's' and self.y != 0:
-                self.y -= 1
-                moved = True
-            else:
-                print("Invalid move please choose again")
-                direction = input()
-
-class Enemy:
-
-    def __init__(self):
-        self.hp = 20
-        self.alive = True
-
-    def turn(self):
-
-        if player.defend == True:
-            print("Enemy attacks"); sleep(1)
-            print("You defended yourself"); sleep(1)
-        else:
-            print("Enemy attacks.\nDeals 5 damage!")
-            player.hp -= 5
-
-        if player.hp <= 0:
-            print("You have been defeated!")
-            player.alive = False
 
 def battle():
 
+    print(enemy.name + " has appeared!")
+
     while player.alive and enemy.alive:
 
-        print("Player HP: " + str(player.hp) + "\nEnemy HP: " + str(enemy.hp))
+        print("\nPlayer HP: " + str(player.currHP) + "\nEnemy HP: " + str(enemy.hp))
 
-        num = player.turn()
+        num = player.turn(enemy)
 
         if enemy.alive == False or num == -1:
             break
 
-        enemy.turn()
+        enemy.turn(player)
 
+def printText():
+
+    if player.x == 0 and player.y == 0:
+        print(name + " wakes up in a strange place."); #sleep(1)
+        print("During your travels the ground collapsed beneath your feet "
+              "and you seem to have fallen into a cave."); #sleep(1)
 def examine():
     print("Examine")
 
@@ -128,14 +51,16 @@ print("What is your name?")
 
 name = input()
 
-print("Welcome " + name + "! This is a simple text adventure game"); sleep(1.5)
-print("Type in N/S/E/W when promted to move around the board"); sleep(1.5)
-print("Type l to examine the room"); sleep(1.5)
-print("Try to find your way out of the cave to win!\n Let's get started");sleep(1.5)
+print("Welcome " + name + "! This is a simple text adventure game"); #sleep(1.5)
+print("Type in N/S/E/W when promted to move around the board");#sleep(1.5)
+print("Type l to examine the room");# sleep(1.5)
+print("Try to find your way out of the cave to win!\n Let's get started\n\n*********\n\n");#sleep(1.5)
 
-player = Player(name)
+player = Player.Player(name)
 
 while player.alive:
+
+    printText()
 
     print("Enter a direction to go N/S/E/W, or enter L/l to examine the room")
 
@@ -149,7 +74,16 @@ while player.alive:
     num = random.randint(0, 100)
 
     if num % 9 == 0:
-        enemy = Enemy()
+
+        num = random.randint(0,2)
+
+        if(num == 0):
+            enemy = Enemy.Skeleton()
+        elif(num == 1):
+            enemy = Enemy.Bat()
+        elif num == 2:
+            enemy = Enemy.Skeleton()
+
         battle()
     else:
         pass
