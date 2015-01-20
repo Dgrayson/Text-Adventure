@@ -72,14 +72,24 @@ while player.alive:
         player.move(choice)
 
     num = random.randint(0, 100)
+    if board[player.x][player.y] == 2:
+        enemy = Enemy.Dragon()
 
-    if num % 9 == 0:
+        print("You've made it to the end of the cave, but a dragon stands in your way!"); sleep(1)
+        battle()
+
+        if player.alive:
+            print("Congratulations! You made it to the end!")
+        else:
+            print("You have been defeated")
+        break
+    elif num % 9 == 0:
 
         num = random.randint(0,2)
 
-        if(num == 0):
+        if num == 0:
             enemy = Enemy.Skeleton()
-        elif(num == 1):
+        elif num == 1:
             enemy = Enemy.Bat()
         elif num == 2:
             enemy = Enemy.Skeleton()
@@ -87,7 +97,3 @@ while player.alive:
         battle()
     else:
         pass
-
-    if board[player.x][player.y] == 2:
-        print("Congratulations! You made it to the end!")
-        break

@@ -23,12 +23,12 @@ class Player:
         choice = int(input())
 
         if choice == 1:
-            print(self.name + " attacks"); sleep(1.5)
+            print(self.name + " attacks")
 
             critical = random.randint(0, 100)
 
             if critical % 9 == 0:
-                print("Critical Hit!"); sleep(1.5)
+                print("Critical Hit!");
                 enemy.hp -= 20
                 print("You dealt 20 damage!\n"); sleep(1.5)
             else:
