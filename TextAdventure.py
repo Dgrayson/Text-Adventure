@@ -3,6 +3,7 @@ __author__ = 'dgrayson'
 import random
 import Player
 import Enemy
+import Room
 from time import sleep
 
 def battle():
@@ -11,7 +12,7 @@ def battle():
 
     while player.alive and enemy.alive:
 
-        print("\nPlayer HP: " + str(player.currHP) + "\nEnemy HP: " + str(enemy.hp))
+        print("\nPlayer HP: " + str(player.currHP) + " Player MP: " + str(player.currMP) + "\nEnemy HP: " + str(enemy.hp))
 
         num = player.turn(enemy)
 
@@ -29,27 +30,12 @@ def printText():
 def examine():
     print("Examine")
 
-board = [[0 for x in range(5)] for x in range(5)]
-
-i = 0
-j = 0
-
-
-while i < 5:
-    j = 0
-    while j < 5:
-        board[i][j] = random.randint(0,1)
-        j += 1
-    i += 1
-
-i = random.randint(0,4)
-j = random.randint(0,4)
-
-board[i][j] = 2
-
 print("What is your name?")
 
 name = input()
+board = Room.Board()
+
+board.createBoard()
 
 print("Welcome " + name + "! This is a simple text adventure game"); #sleep(1.5)
 print("Type in N/S/E/W when promted to move around the board");#sleep(1.5)
@@ -60,19 +46,22 @@ player = Player.Player(name)
 
 while player.alive:
 
-    printText()
+    board.printText(player)
 
     print("Enter a direction to go N/S/E/W, or enter L/l to examine the room")
+
+    #board.printBoard()
 
     choice = input()
 
     if choice == 'l' or choice == 'L':
-        examine()
+        board.printBoard(player)
     else:
         player.move(choice)
 
     num = random.randint(0, 100)
-    if board[player.x][player.y] == 2:
+
+    if board.board[player.x][player.y] == 2:
         enemy = Enemy.Dragon()
 
         print("You've made it to the end of the cave, but a dragon stands in your way!"); sleep(1)
