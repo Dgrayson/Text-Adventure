@@ -50,8 +50,6 @@ while player.alive:
 
     print("Enter a direction to go N/S/E/W, or enter L/l to examine the room")
 
-    #board.printBoard()
-
     choice = input()
 
     if choice == 'l' or choice == 'L':
@@ -61,7 +59,7 @@ while player.alive:
 
     num = random.randint(0, 100)
 
-    if board.board[player.x][player.y] == 2:
+    if board.board[player.x][player.y] == 4:
         enemy = Enemy.Dragon()
 
         print("You've made it to the end of the cave, but a dragon stands in your way!"); sleep(1)

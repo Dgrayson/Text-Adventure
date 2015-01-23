@@ -89,6 +89,6 @@ class Dragon(Boss):
     def special(self, player):
         print("Special Attack!")
         sleep(1)
-        print(self.name + " uses Fire breath")
-        print(player.name + ' takes 20 damage')
+        print(self.name + " uses Fire breath"); sleep(1)
+        print(player.name + ' takes 20 damage'); sleep(1)
         player.currHP -= 20
