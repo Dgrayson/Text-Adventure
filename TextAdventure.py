@@ -26,7 +26,8 @@ def printText():
     if player.x == 0 and player.y == 0:
         print(name + " wakes up in a strange place."); #sleep(1)
         print("During your travels the ground collapsed beneath your feet "
-              "and you seem to have fallen into a cave."); #sleep(1)
+              "and you seem to have fallen into a cave.\n"); #sleep(1)
+
 def examine():
     print("Examine")
 
@@ -37,12 +38,14 @@ board = Room.Board()
 
 board.createBoard()
 
-print("Welcome " + name + "! This is a simple text adventure game"); #sleep(1.5)
-print("Type in N/S/E/W when promted to move around the board");#sleep(1.5)
-print("Type l to examine the room");# sleep(1.5)
-print("Try to find your way out of the cave to win!\n Let's get started\n\n*********\n\n");#sleep(1.5)
+print("Welcome " + name + "! This is a simple text adventure game"); sleep(1.5)
+print("Type in N/S/E/W when promted to move around the board");sleep(1.5)
+print("Type l to examine the room"); sleep(1.5)
+print("Try to find your way out of the cave to win!\nLet's get started\n\n*********\n\n");sleep(1.5)
 
 player = Player.Player(name)
+
+printText()
 
 while player.alive:
 

@@ -24,7 +24,7 @@ class Player:
         self.defend = False
 
         while inMenu:
-            print("What will you do?\n\n1. Attack 2. Defend\n3. Magic 4. Run\n 5. Items")
+            print("What will you do?\n\n1. Attack 2. Defend\n3. Magic 4. Run\n5. Items")
             choice = int(input())
 
             if choice == 1:
@@ -101,7 +101,7 @@ class Player:
                 self.currMP -= 5
             elif choice == 2 and self.currMP >= 5:
 
-                print(self.name + " uses Ice"); sleep(1)
+                print(self.name + " uses Blizzard"); sleep(1)
                 print("You deal 10 damage"); sleep(1)
                 enemy.hp -= 10
                 self.currMP -= 5
