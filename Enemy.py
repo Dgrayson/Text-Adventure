@@ -22,6 +22,7 @@ class Enemy:
             sleep(1)
         else:
             print(self.name + " attacks.\nDeals 5 damage!")
+            sleep(1.5)
             player.currHP -= 5
 
         if player.currHP <= 0:

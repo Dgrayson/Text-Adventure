@@ -40,7 +40,7 @@ board.createBoard()
 
 print("Welcome " + name + "! This is a simple text adventure game"); sleep(1.5)
 print("Type in N/S/E/W when promted to move around the board");sleep(1.5)
-print("Type l to examine the room"); sleep(1.5)
+print("Type M to display the map"); sleep(1.5)
 print("Try to find your way out of the cave to win!\nLet's get started\n\n*********\n\n");sleep(1.5)
 
 player = Player.Player(name)
@@ -51,11 +51,11 @@ while player.alive:
 
     board.printText(player)
 
-    print("Enter a direction to go N/S/E/W, or enter L/l to examine the room")
+    print("Enter a direction to go N/S/E/W, or enter M/m to display map")
 
     choice = input()
 
-    if choice == 'l' or choice == 'L':
+    if choice == 'm' or choice == 'M':
         board.printBoard(player)
     else:
         player.move(choice)
